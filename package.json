@@ -1,0 +1,32 @@
+{
+  "name": "ssugar",
+  "version": "0.2.0",
+  "description": "super sugar",
+  "main": "index.js",
+  "bin": {
+    "sugar": "bin/sugar.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fengshangshi/sugar.git"
+  },
+  "keywords": [
+    "sugar",
+    "super"
+  ],
+  "author": "fengshangshi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fengshangshi/sugar/issues"
+  },
+  "homepage": "https://github.com/fengshangshi/sugar#readme",
+  "dependencies": {
+    "commander": "^2.9.0",
+    "fs-extra": "^0.26.2",
+    "lodash": "^3.10.1",
+    "sugar-template-scaffold": "0.0.3"
+  }
+}

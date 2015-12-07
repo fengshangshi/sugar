@@ -1,0 +1,15 @@
+{
+		"server": {
+				"config": {
+						"type": "github",
+						"repos": "fengshangshi/sugar-template-server"
+				}
+		},
+
+		"app": {
+				"config": {
+						"type": "github",
+						"repos": "fengshangshi/sugar-template-app"
+				}
+		}
+}
