@@ -10,14 +10,18 @@ var conf = require('../../../config/scaffold');
 var sugarConf = require('../../../config/sugar');
 
 module.exports = function(root) {
-		var target = root || process.env['HOME'];
+		var target = root || path.join(process.env['HOME'], '/.sugar');
 		var config = conf.server['config'];
 		var id = config['repos'];
 		var type = config['type'];
 
 		var template = id.split('/')[1];
 
-		target = path.join(target, '/.sugar');
+		if (!path.isAbsolute(target)) {
+				console.log('必须指定绝对路径');
+				return;
+		}
+
 		if (fs.existsSync(target)) {
 				console.log('服务器已经存在，可以通过-t指定服务器安装目录');
 				return;
