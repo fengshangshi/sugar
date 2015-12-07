@@ -67,7 +67,7 @@ module.exports = function(root) {
 								fs.writeFileSync(sugarConfigPath, JSON.stringify(sugarConfig, null, 2));
 
 								// chmod 755
-								fs.chmodSync(sugarConfig['bin'], 755);
+								fs.chmodSync(sugarConfig['bin'], '755');
 						
 								console.log('开始安装服务器必要的依赖');
 
