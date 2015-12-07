@@ -1,5 +1,5 @@
 /**
- * @file 初始化server环境
+ * @file 初始化应用程序环境
  * @author fengshangshi
  */
 var fs = require('fs-extra');
@@ -15,7 +15,7 @@ module.exports = function(target) {
 		var template = id.split('/')[1];
 
 		console.log('应用程序目录初始化开始');
-		console.log('正在下载应用程序模板...');
+		console.log('正在下载模板...');
 		var scaffold = new Scaffold({type: type});
 
 		scaffold.download(
@@ -23,11 +23,11 @@ module.exports = function(target) {
 
 				function(err, src) {
 						if (err) {
-								console.log('下载应用程序模板失败: ' + err);
+								console.log('下载模板失败: ' + err);
 								return;
 						}
 
-						console.log('下载应用程序模板完成');
+						console.log('下载模板完成');
 						console.log('开始复制文件...');
 
 						src += ('/' + template + '-master');
