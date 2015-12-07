@@ -1,6 +1,6 @@
 {
   "name": "ssugar",
-  "version": "0.1.23",
+  "version": "0.1.25",
   "description": "super sugar",
   "main": "index.js",
   "bin": {
@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/fengshangshi/sugar#readme",
   "dependencies": {
+    "chokidar": "^1.4.0",
     "commander": "^2.9.0",
     "fs-extra": "^0.26.2",
     "lodash": "^3.10.1",

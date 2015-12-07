@@ -5,7 +5,7 @@
 var fs = require('fs-extra');
 var path = require('path');
 
-module.exports = function(target) {
+module.exports = function(root, target) {
 		var root = process.cwd();
 		var configPath = path.join(root, '/sugar-config.json');
 		if (!fs.existsSync(configPath)) {
