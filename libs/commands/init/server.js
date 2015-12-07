@@ -77,6 +77,11 @@ module.exports = function(root) {
 										console.log('依赖安装完成');
 										console.log('服务器环境初始化完成');
 								});
+
+								// 打印子进程返回的信息
+								e.stdout.on('data', function(chunk) {
+									console.log(chunk);
+								});
 						});
 				},
 

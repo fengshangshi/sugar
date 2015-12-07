@@ -4,6 +4,12 @@
  */
 module.exports = function(options) {
 		var target = options.target;
-		console.log(target);
+		var watch = options.watch;
+
+		if (watch) {
+				require('./release/watch')(target);
+		} else {
+				require('./release/release')(target);
+		}
 };
 

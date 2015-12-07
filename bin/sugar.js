@@ -23,6 +23,7 @@ program
 		.command('release')
 		.description('release app to server')
 		.option('-t, --target <target>')
+		.option('-w, --watch')
 		.action(require('../libs/commands/release'));
 
 program.parse(process.argv);
