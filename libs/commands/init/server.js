@@ -9,6 +9,11 @@ var Scaffold = require('sugar-template-scaffold');
 var conf = require('../../../config/scaffold');
 var sugarConf = require('../../../config/sugar');
 
+var suffixMap = {
+		'gitlab': '.git',
+		'github': '-master'
+};
+
 module.exports = function(root) {
 		var target = root || path.join(process.env['HOME'], '/.sugar');
 		var config = conf.server['config'];
@@ -22,10 +27,12 @@ module.exports = function(root) {
 				return;
 		}
 
+		/*
 		if (fs.existsSync(target)) {
 				console.log('服务器已经存在，可以通过-t指定服务器安装目录');
 				return;
 		}
+		*/
 		
 		// sugar.config
 		var sugarConfigPath = path.join(process.env['HOME'], '/.sugar.json');
@@ -49,7 +56,9 @@ module.exports = function(root) {
 						console.log('下载模板完成');
 						console.log('开始复制文件...');
 
-						src += ('/' + template + '-master');
+						var suffix = suffixMap[type] || '-master';
+
+						src += ('/' + template + suffix);
 						fs.copy(src, target, function(err) {
 								if (err) {
 										console.log('复制文件失败: ' + err);

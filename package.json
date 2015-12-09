@@ -1,6 +1,6 @@
 {
   "name": "ssugar",
-  "version": "0.1.25",
+  "version": "0.1.28",
   "description": "super sugar",
   "main": "index.js",
   "bin": {
@@ -28,6 +28,6 @@
     "commander": "^2.9.0",
     "fs-extra": "^0.26.2",
     "lodash": "^3.10.1",
-    "sugar-template-scaffold": "0.0.3"
+    "sugar-template-scaffold": "0.0.4"
   }
 }
