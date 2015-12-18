@@ -72,6 +72,8 @@ module.exports = function(root) {
 
 								sugarConfig['server'] = target;
 								sugarConfig['bin'] = path.join(target, '/bin/www');
+
+								sugarConfig['history'].splice(sugarConfig['history'].indexOf(target), 1);
 								sugarConfig['history'].unshift(target);
 
 								fs.writeFileSync(sugarConfigPath, JSON.stringify(sugarConfig, null, 2));
