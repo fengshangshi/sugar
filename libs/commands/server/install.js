@@ -6,9 +6,12 @@ var cp = require('child_process');
 var readline = require('readline');
 
 module.exports = function(config) {
-		var bin = config['bin'];
+		var server = config['server'];
 
-		var spawn = cp.spawn(bin, ['start'], {
+		console.log('开始安装服务器依赖...');
+
+		var spawn = cp.spawn('npm', ['install'], {
+				cwd: server,
 				env: process.env
 		});
 
@@ -21,6 +24,10 @@ module.exports = function(config) {
 				console.log(line);
 		});
 
+		spawn.stdout.on('end', function() {
+				console.log('服务器依赖安装完成');
+		});
+
 		var stderrR = readline.createInterface({
 				input: spawn.stderr,
 				terminal: false
@@ -30,3 +37,4 @@ module.exports = function(config) {
 				console.log(line);
 		});
 };
+

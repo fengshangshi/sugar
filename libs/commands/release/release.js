@@ -18,34 +18,34 @@ module.exports = function(root, target) {
 		var serverPath = config ? config['path'] 
 						: require(path.join(process.env['HOME'], '/.sugar.json'))['server'];
 
-		var src = path.join(root, '/app');
+		var appSrc = path.join(root, '/app');
 		var target = path.join(serverPath, '/app');
-		fs.copy(src, target, function(err) {
+		fs.copy(appSrc, target, function(err) {
 				if (err) {
-						console.log('复制 ' + src + ' 失败: ' + err);
+						console.log('复制 ' + appSrc + ' 失败: ' + err);
 						return;
 				}
-				console.log('复制 ' + src + ' 成功');
+				console.log('复制 ' + appSrc + ' 成功');
 		});
 
-		var src = path.join(root, '/views');
+		var viewSrc = path.join(root, '/views');
 		var target = path.join(serverPath, '/views');
-		fs.copy(src, target, function(err) {
+		fs.copy(viewSrc, target, function(err) {
 				if (err) {
-						console.log('复制 ' + src + ' 失败: ' + err);
+						console.log('复制 ' + viewSrc + ' 失败: ' + err);
 						return;
 				}
-				console.log('复制 ' + src + ' 成功');
+				console.log('复制 ' + viewSrc + ' 成功');
 		});
 
-		var src = path.join(root, '/static');
+		var staticSrc = path.join(root, '/static');
 		var target = path.join(serverPath, '/static');
-		fs.copy(src, target, function(err) {
+		fs.copy(staticSrc, target, function(err) {
 				if (err) {
-						console.log('复制 ' + src + ' 失败: ' + err);
+						console.log('复制 ' + staticSrc + ' 失败: ' + err);
 						return;
 				}
-				console.log('复制 ' + src + ' 成功');
+				console.log('复制 ' + staticSrc + ' 成功');
 		});
 };
 

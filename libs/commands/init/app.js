@@ -7,6 +7,11 @@ var Scaffold = require('sugar-template-scaffold');
 
 var conf = require('../../../config/scaffold');
 
+var suffixMap = {
+		'gitlab': '.git',
+		'github': '-master'
+};
+
 module.exports = function(target) {
 		var config = conf.app['config'];
 		var id = config['repos'];
@@ -30,7 +35,9 @@ module.exports = function(target) {
 						console.log('下载模板完成');
 						console.log('开始复制文件...');
 
-						src += ('/' + template + '-master');
+						var suffix = suffixMap[type] || '-master';
+
+						src += ('/' + template + suffix);
 						fs.copy(src, target, function(err) {
 								if (err) {
 										console.log('复制文件失败: ' + err);

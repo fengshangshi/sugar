@@ -6,7 +6,7 @@ var fs = require('fs');
 var path = require('path');
 
 module.exports = function(action) {
-		var configPath = path.join(process.env['HOME'], '/.sugar.json');
+		var configPath = path.join(process.env['HOME'], '.sugar.json');
 		if (!fs.existsSync(configPath)) {
 				console.log('没有找到sugar.json，请确认是否已经安装了服务器');
 				return;
@@ -29,6 +29,10 @@ module.exports = function(action) {
 
 				case 'where':
 						require('./server/where')(config);
+						break;
+
+				case 'install':
+						require('./server/install')(config);
 						break;
 
 				default:

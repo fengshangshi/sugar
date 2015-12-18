@@ -4,6 +4,7 @@
  */
 var fs = require('fs-extra');
 var path = require('path');
+var readline = require('readline');
 var Scaffold = require('sugar-template-scaffold');
 
 var conf = require('../../../config/scaffold');
@@ -80,23 +81,33 @@ module.exports = function(root) {
 						
 								console.log('开始安装服务器必要的依赖');
 
-								var exec = require('child_process').exec,
-										command = 'npm install';
+								var spawn = require('child_process').spawn;
+								var s = spawn('npm', ['install'], {
+										cwd: target,
+										env: process.env
+								});
 
-								var e = exec(command, function(err, stdout, stderr) {
-										if (err) {
-												console.log(err);
-												console.log('安装依赖失败, 请执行sugar server intall');
-												return;
-										}
+								var stdoutR = readline.createInterface({
+										input: s.stdout,
+										terminal: false
+								});
 
+								stdoutR.on('line', function(line) {
+										console.log(line);
+								});
+
+								s.stdout.on('end', function() {
 										console.log('依赖安装完成');
 										console.log('服务器环境初始化完成');
 								});
 
-								// 打印子进程返回的信息
-								e.stdout.on('data', function(chunk) {
-									console.log(chunk);
+								var stderrR = readline.createInterface({
+										input: s.stderr,
+										terminal: false
+								});
+
+								stderrR.on('line', function(line) {
+										console.log(line);
 								});
 						});
 				},
