@@ -1,0 +1,8 @@
+{
+    "files": [
+        "app",
+        "views",
+        "static",
+        "package.json"
+    ]
+}
