@@ -83,21 +83,33 @@ module.exports = function(root) {
 				// chmod 755
 				var bin = sugarConfig['bin'];
 				fs.chmodSync(bin, '755');
-				fs.chownSync(bin, 'tomcat', 'tomcat');
 
 				// 创建logs
 				var logs = path.join(sugarConfig['server'], 'logs');
 				fs.mkdirSync(logs, '755');
-				fs.chownSync(logs, 'tomcat', 'tomcat');
 
 				// 创建cache
 				var cache = path.join(sugarConfig['server'], 'cache');
 				fs.mkdirSync(cache, '755');
-				fs.chownSync(cache, 'tomcat', 'tomcat');
+
+				var spawn = require('child_process').spawn;
+
+				var chown = spawn('chown', ['tomcat:tomcat', logs, cache], {
+					env: process.env
+				});
+
+				var chownStderrR = readline.createInterface({
+					input: chown.stderr,
+					terminal: false
+				});
+
+				chownStderrR.on('line', function(line) {
+					console.log(line);
+				});
+
 
 				console.log('开始安装服务器必要的依赖');
 
-				var spawn = require('child_process').spawn;
 				var s = spawn('npm', ['install'], {
 					cwd: target,
 					env: process.env
