@@ -81,10 +81,19 @@ module.exports = function(root) {
 				fs.writeFileSync(sugarConfigPath, JSON.stringify(sugarConfig, null, 2));
 
 				// chmod 755
-				fs.chmodSync(sugarConfig['bin'], '755');
+				var bin = sugarConfig['bin'];
+				fs.chmodSync(bin, '755');
+				fs.chownSync(bin, 'tomcat', 'tomcat');
 
 				// 创建logs
-				fs.mkdirSync(path.join(sugarConfig['server'], 'logs'), '755');
+				var logs = path.join(sugarConfig['server'], 'logs');
+				fs.mkdirSync(logs, '755');
+				fs.chownSync(logs, 'tomcat', 'tomcat');
+
+				// 创建cache
+				var cache = path.join(sugarConfig['server'], 'cache');
+				fs.mkdirSync(cache, '755');
+				fs.chownSync(cache, 'tomcat', 'tomcat');
 
 				console.log('开始安装服务器必要的依赖');
 
