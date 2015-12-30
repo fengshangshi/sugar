@@ -1,8 +1,8 @@
 {
-    "files": [
-        "app",
-        "views",
-        "static",
-        "package.json"
-    ]
+    "files": {
+        "app": 1,
+        "views": 0,
+        "static": 0,
+        "package.json": 2
+    }
 }

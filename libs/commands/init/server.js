@@ -15,11 +15,12 @@ var suffixMap = {
 	'github': '-master'
 };
 
-module.exports = function(root) {
+module.exports = function(root, source) {
 	var target = root || path.join(process.env['HOME'], '/.sugar');
-	var config = conf.server['config'];
+	var type = source || 'gitlab';
+	var config = conf.server[type];
 	var id = config['repos'];
-	var type = config['type'];
+
 
 	var template = id.split('/')[1];
 
@@ -35,8 +36,8 @@ module.exports = function(root) {
 	}
 	*/
 
-	// sugar.config
-	var sugarConfigPath = path.join(process.env['HOME'], '/.sugar.json');
+	// .sugar.json
+	var sugarConfigPath = path.join(process.env['HOME'], '.sugar.json');
 	if (!fs.existsSync(sugarConfigPath)) {
 		fs.writeFileSync(sugarConfigPath, JSON.stringify(sugarConf, null, 2));
 	}
@@ -59,7 +60,7 @@ module.exports = function(root) {
 			console.log('下载模板完成');
 			console.log('开始复制文件...');
 
-			var suffix = suffixMap[type] || '-master';
+			var suffix = suffixMap[type] || '.git';
 
 			src += ('/' + template + suffix);
 			fs.copy(src, target, function(err) {
@@ -86,11 +87,11 @@ module.exports = function(root) {
 
 				// 创建logs
 				var logs = path.join(sugarConfig['server'], 'logs');
-				fs.mkdirSync(logs, '755');
+				fs.existsSync(logs) || fs.mkdirSync(logs, '755');
 
 				// 创建cache
 				var cache = path.join(sugarConfig['server'], 'cache');
-				fs.mkdirSync(cache, '755');
+				fs.existsSync(cache) || fs.mkdirSync(cache, '755');
 
 				var spawn = require('child_process').spawn;
 

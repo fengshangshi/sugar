@@ -11,6 +11,7 @@ program
 	.command('init <name>')
 	.description('init server or app')
 	.option('-t, --target <target>')
+	.option('-s, --source <source>')
 	.action(require('../libs/commands/init'));
 
 // seeting server

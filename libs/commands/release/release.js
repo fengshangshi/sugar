@@ -21,9 +21,9 @@ module.exports = function(root, target) {
 		'HOME'], '.sugar.json'))['server'];
 
 	// 复制文件
-	_.forEach(releaseConfig.files, function(i) {
-		var src = path.join(pwd, i);
-		var target = path.join(serPath, i);
+	_.forEach(releaseConfig.files, function(val, key) {
+		var src = path.join(pwd, key);
+		var target = path.join(serPath, key);
 		copy(src, target);
 	});
 };

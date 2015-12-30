@@ -13,25 +13,30 @@ var release = require('./release');
 var serverPath, root;
 
 module.exports = function(src, target) {
-	root = src;
-	release(root, target);
+	release(src, target);
 	restartServer();
 
 	var config = target ? getConf(target) : false;
 	serverPath = config ? config['path'] : require(path.join(process.env['HOME'],
 		'/.sugar.json'))['server'];
 
-	chokidar.watch(root, {
+	chokidar.watch(src, {
 		ignored: /[\/\\]\./
 	}).on('change', chokidarHandle);
+
+	root = src;
 };
 
 function chokidarHandle(src) {
 	copyFile(src, function(err) {
 		if (err) return console.log(src + ' 发布失败: ' + err);
+
 		console.log(src + ' 发布成功');
 
-		restartServer();
+		// app下自动重启
+		if (/app/.test(src)) {
+			restartServer();
+		}
 	});
 }
 

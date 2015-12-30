@@ -4,12 +4,13 @@
  */
 module.exports = function(name, options) {
 	var target = options.target;
+	var source = options.source;
 	switch (name) {
 		case 'server':
-			require('./init/server')(options.target);
+			require('./init/server')(target, source);
 			break;
 		case 'app':
-			require('./init/app')(process.cwd());
+			require('./init/app')(process.cwd(), source);
 			break;
 
 		default:
