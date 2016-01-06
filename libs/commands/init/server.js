@@ -16,7 +16,7 @@ var suffixMap = {
 };
 
 module.exports = function(root, source) {
-	var target = root || path.join(process.env['HOME'], '/.sugar');
+	var target = root || path.join(process.env['HOME'], '.sugar');
 	var type = source || 'gitlab';
 	var config = conf.server[type];
 	var id = config['repos'];

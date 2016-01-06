@@ -12,10 +12,10 @@ var suffixMap = {
 	'github': '-master'
 };
 
-module.exports = function(target) {
-	var config = conf.app['config'];
+module.exports = function(target, source) {
+	var type = conf.app[source] || 'gitlab';
+	var config = conf.app[type];
 	var id = config['repos'];
-	var type = config['type'];
 
 	var template = id.split('/')[1];
 
