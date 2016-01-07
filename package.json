@@ -1,6 +1,6 @@
 {
     "name": "ssugar",
-    "version": "0.1.38",
+    "version": "0.1.40",
     "description": "super sugar",
     "main": "index.js",
     "bin": {

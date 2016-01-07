@@ -95,23 +95,12 @@ module.exports = function(root, source) {
 
 				var spawn = require('child_process').spawn;
 
-				var chown = spawn('chown', ['tomcat:tomcat', logs, cache], {
-					env: process.env
-				});
-
-				var chownStderrR = readline.createInterface({
-					input: chown.stderr,
-					terminal: false
-				});
-
-				chownStderrR.on('line', function(line) {
-					console.log(line);
-				});
-
-
 				console.log('开始安装服务器必要的依赖');
 
-				var s = spawn('npm', ['install'], {
+				var registry = "--registry=https://registry.npm.taobao.org";
+				var disturl = "--disturl=https://npm.taobao.org/dist";
+
+				var s = spawn('npm', ['install', registry, disturl], {
 					cwd: target,
 					env: process.env
 				});
